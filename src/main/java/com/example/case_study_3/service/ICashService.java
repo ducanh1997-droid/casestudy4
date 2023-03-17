@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ICashService {
+        List<Object>  chartList( LocalDateTime start, LocalDateTime end);
+        List<Object> searchByYear();
+        List<Object> getDetailChart( LocalDateTime start, LocalDateTime end,String type);
         Page<Cash> findAll(Pageable pageable);
         Cash findOne(Long id);
         Double getSalary();

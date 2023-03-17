@@ -30,4 +30,11 @@ public interface CashRepository extends JpaRepository<Cash,Long> {
     @Query(value = "select c from Cash c where c.category.type = 'expense'")
     List<Cash> findAllByExpense();
 
+
+    @Query(value = "select c.type,DATE(c.date) ,sum(c.money) as money from  Cash c where c.date>=:start and c.date<=:end group by c.type,DATE(c.date)  order by DATE(c.date) asc")
+    List<Object>  chartList( @Param("start") LocalDateTime start,@Param("end") LocalDateTime end);
+    @Query(value = "select c.type,year (c.date),sum(c.money) as money from Cash c group by Year(c.date),c.type order by year(c.date) asc")
+    List<Object> searchByYear();
+    @Query(value = "select c.category.name,sum(c.money) as money from Cash c  where c.type=:type and c.date>=:start and c.date<=:end group by  c.category,c.type order by money" )
+    List<Object> getDetailChart( @Param("start") LocalDateTime start,@Param("end") LocalDateTime end,@Param("type") String type);
 }

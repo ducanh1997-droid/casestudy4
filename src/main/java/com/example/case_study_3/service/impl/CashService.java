@@ -63,4 +63,14 @@ public class CashService implements ICashService {
     public Double totalMoneyByCategoryAndType(String type, Long category,LocalDateTime start ,LocalDateTime end) {
         return cashRepository.getTotalMoneyByCategoryAndType(type,category,start,end);
     }
+    @Override
+    public List<Object>  chartList(LocalDateTime start, LocalDateTime end){
+        return cashRepository.chartList(start,end);
+    }
+    public List<Object> searchByYear(){
+        return cashRepository.searchByYear();
+    }
+    public List<Object> getDetailChart(LocalDateTime start, LocalDateTime end,String type){
+        return cashRepository.getDetailChart(start,end,type);
+    }
 }

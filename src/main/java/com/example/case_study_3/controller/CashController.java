@@ -83,12 +83,6 @@ public class CashController {
         iCashService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    @GetMapping("/search/{start}/{end}")
-    public ResponseEntity<List<Cash>> searchByDate(@PathVariable String start,@PathVariable String end){
-        LocalDateTime starDate=  LocalDateTime.parse(start);
-        LocalDateTime endDate=LocalDateTime.parse(end);
-        return new ResponseEntity<>(iCashService.searchByDate(starDate,endDate),HttpStatus.OK);
-    }
     @GetMapping("/total/{type}")
     public ResponseEntity<Double> getTotalByType(@PathVariable String type){
         return new ResponseEntity<>(iCashService.totalMoneyByType(type),HttpStatus.OK);
@@ -101,4 +95,23 @@ public class CashController {
     }
 
 
+    @GetMapping("/search/{start}/{end}")
+    public ResponseEntity<List<Object>> searchByDate(@PathVariable String start,@PathVariable String end){
+        LocalDateTime starDate=  LocalDateTime.parse(start);
+        LocalDateTime endDate=LocalDateTime.parse(end);
+        List<Object> chartList=iCashService.chartList(starDate,endDate);
+        return new ResponseEntity<>(chartList,HttpStatus.OK);
+    }
+    @GetMapping("/searchByYear/")
+    public ResponseEntity<List<Object>> searchByYear(){
+        List<Object> yearList=iCashService.searchByYear();
+        return new ResponseEntity<>(yearList,HttpStatus.OK);
+    }
+    @GetMapping("/chartDetail/{start}/{end}/{type}")
+    public ResponseEntity<List<Object>> getDetailChart(@PathVariable String start,@PathVariable String end,@PathVariable String type){
+        LocalDateTime starDate=  LocalDateTime.parse(start);
+        LocalDateTime endDate=LocalDateTime.parse(end);
+        List<Object> chartList=iCashService.getDetailChart(starDate,endDate,type);
+        return new ResponseEntity<>(chartList,HttpStatus.OK);
+    }
 }
