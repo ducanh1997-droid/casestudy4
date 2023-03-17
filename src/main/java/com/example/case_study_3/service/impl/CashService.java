@@ -30,6 +30,16 @@ public class CashService implements ICashService {
     }
 
     @Override
+    public Double getSalary() {
+        return cashRepository.getSalary();
+    }
+
+    @Override
+    public List<Cash> finAllByExpense() {
+        return cashRepository.findAllByExpense();
+    }
+
+    @Override
     public void save(Cash cash) {
     cashRepository.save(cash);
     }

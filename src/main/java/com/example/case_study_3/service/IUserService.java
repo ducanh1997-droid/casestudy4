@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface IUserService {
     List<User> findALl();
-    User findById(Long id);
+    User findOne(Long id);
     void save(User user);
     void delete(Long id);
+    User findByUserNameAndPassWord(String username,String passWord);
 }

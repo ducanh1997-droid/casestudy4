@@ -17,7 +17,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User findById(Long id) {
+    public User findOne(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 
@@ -29,5 +29,10 @@ public class UserService implements IUserService {
     @Override
     public void delete(Long id) {
     userRepository.deleteById(id);
+    }
+    @Override
+    public User findByUserNameAndPassWord(String username, String passWord) {
+        User user =userRepository.findByUsernameAndPassword(username,passWord);
+        return user;
     }
 }

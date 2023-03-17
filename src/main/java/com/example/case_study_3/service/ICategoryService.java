@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface ICategoryService {
     List<Category> findAll();
+    List<Category> findAllByExpense();
+    List<Category> findAllByIncome();
+    List<Category> findAllByAccount();
+    List<Category> findAllByPlan();
 }

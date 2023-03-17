@@ -17,4 +17,24 @@ public class CategoryService implements ICategoryService {
         return categoryRepository.findAll();
     }
 
+    @Override
+    public List<Category> findAllByExpense() {
+        return categoryRepository.findAllByExpense();
+    }
+
+    @Override
+    public List<Category> findAllByAccount() {
+        return categoryRepository.findAllByAccount();
+    }
+
+    @Override
+    public List<Category> findAllByPlan() {
+        return categoryRepository.findAllByPlan();
+    }
+
+    @Override
+    public List<Category> findAllByIncome() {
+        return categoryRepository.findAllByIncome();
+    }
+
 }

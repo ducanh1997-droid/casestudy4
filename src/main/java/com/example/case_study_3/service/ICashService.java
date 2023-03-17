@@ -10,6 +10,8 @@ import java.util.List;
 public interface ICashService {
         Page<Cash> findAll(Pageable pageable);
         Cash findOne(Long id);
+        Double getSalary();
+        List<Cash> finAllByExpense();
         void save(Cash cash);
         void delete(Long id);
         List<Cash> searchByDate(LocalDateTime startDate, LocalDateTime endDate);

@@ -1,5 +1,6 @@
 package com.example.case_study_3.repository;
 import com.example.case_study_3.model.Cash;
+import com.example.case_study_3.model.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,6 +24,10 @@ public interface CashRepository extends JpaRepository<Cash,Long> {
     @Query(value = "select sum (c.money) from Cash  c where c.type=:type and c.category.id=:category and c.date>=:start and c.date<=:end")
     Double getTotalMoneyByCategoryAndType(@Param("type") String type,@Param("category") Long category ,@Param("start") LocalDateTime start,@Param("end") LocalDateTime end);
 
+    @Query(value = "select SUM(c.money) from Cash c where  c.category.id = 8")
+    Double getSalary();
 
+    @Query(value = "select c from Cash c where c.category.type = 'expense'")
+    List<Cash> findAllByExpense();
 
 }
